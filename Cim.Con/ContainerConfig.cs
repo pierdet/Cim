@@ -1,6 +1,8 @@
 ﻿using Autofac;
 using Cim.Lib.CommandHandler;
 using Cim.Lib.Data;
+using Cim.Lib.Data.Repository;
+using Cim.Lib.UI;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -16,8 +18,16 @@ namespace Cim.Con
 
             builder.RegisterType<AddHandler>().As<IAddHandler>();
             builder.RegisterType<ListHandler>().As<IListHandler>();
+            builder.RegisterType<CreateHandler>().As<ICreateHandler>();
+            
             builder.RegisterType<CimApplication>().As<ICimApplication>();
-            builder.RegisterType<InventoryContext>().As<DbContext>();
+
+            //TODO How to create an interface for InventoryContext?
+            builder.RegisterType<InventoryContext>().AsSelf();
+            builder.RegisterType<InventoryRepository>().As<IInventoryRepository>();
+
+            builder.RegisterType<Gui>().As<IGui>();
+            
 
             return builder.Build();
         }

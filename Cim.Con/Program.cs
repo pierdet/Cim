@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Cim.Lib.CommandHandler;
 using Cim.Lib.CommandOptions;
+using Cim.Lib.Data;
 using CommandLine;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -12,13 +13,16 @@ namespace Cim.Con
     {
         static void Main(string[] args)
         {
+            // Configure DI
             var container = ContainerConfig.Configure();
             using(var scope = container.BeginLifetimeScope())
             {
-                using(var db = scope.Resolve<DbContext>())
+                // ensure DB exists
+                using(var db = scope.Resolve<InventoryContext>())
                 {
                     db.Database.EnsureCreated();
                 }
+                // request an instance of ICimApplication and run it
                 var app = scope.Resolve<ICimApplication>();
                 app.run(args);
             }

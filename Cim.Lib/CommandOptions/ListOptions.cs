@@ -5,10 +5,10 @@ using System.Text;
 
 namespace Cim.Lib.CommandOptions
 {
-    [Verb("list", HelpText = "Add hosts to an inventory")]
+    [Verb("list", HelpText = "List inventories")]
     public class ListOptions
     {
-        [Option('i', "inventory", Required = true, HelpText = "Specify the inventory to list the hosts of")]
+        [Option('i', "inventory-name", Required = false, HelpText = "Specify an inventory to list the hosts of")]
         public string Inventory { get; set; }
     }
 }
