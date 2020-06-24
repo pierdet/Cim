@@ -2,22 +2,20 @@
 using Cim.Lib.Data.Repository;
 using Cim.Lib.UI;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Cim.Lib.CommandHandler
 {
-    public class CreateHandler : ICreateHandler
+    public class CreateCommandHandler : ICommandHandler<CreateOptions>
     {
         IInventoryRepository _inventoryRepository;
         IGui _gui;
-        public CreateHandler(IInventoryRepository inventoryRepository, IGui gui)
+        public CreateCommandHandler(IInventoryRepository inventoryRepository, IGui gui)
         {
             _inventoryRepository = inventoryRepository;
             _gui = gui;
         }
         
-        public int RunCreateAndReturnExitCode(CreateOptions opts)
+        public int RunCommand(CreateOptions opts)
         {
             try
             {

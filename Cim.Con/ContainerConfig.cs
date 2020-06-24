@@ -3,10 +3,7 @@ using Cim.Lib.CommandHandler;
 using Cim.Lib.Data;
 using Cim.Lib.Data.Repository;
 using Cim.Lib.UI;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Cim.Lib.CommandOptions;
 
 namespace Cim.Con
 {
@@ -16,9 +13,11 @@ namespace Cim.Con
         {
             var builder = new ContainerBuilder();
 
-            builder.RegisterType<AddHandler>().As<IAddHandler>();
-            builder.RegisterType<ListHandler>().As<IListHandler>();
-            builder.RegisterType<CreateHandler>().As<ICreateHandler>();
+            builder.RegisterType<AddCommandHandler>().As<ICommandHandler<AddOptions>>();
+            builder.RegisterType<ListCommandHandler>().As<ICommandHandler<ListOptions>>();
+            builder.RegisterType<CreateCommandHandler>().As<ICommandHandler<CreateOptions>>();
+
+            builder.RegisterType<CommandHandlerFactory>().AsSelf();
             
             builder.RegisterType<CimApplication>().As<ICimApplication>();
 

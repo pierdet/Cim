@@ -2,21 +2,20 @@
 using Cim.Lib.Data.Repository;
 using Cim.Lib.UI;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Cim.Lib.CommandHandler
 {
-    public class ListHandler : IListHandler
+    public class ListCommandHandler : ICommandHandler<ListOptions>
     {
         IInventoryRepository _inventoryRepository;
         IGui _gui;
-        public ListHandler(IInventoryRepository inventoryRepository, IGui gui)
+        public ListCommandHandler(IInventoryRepository inventoryRepository, IGui gui)
         {
             _inventoryRepository = inventoryRepository;
             _gui = gui;
         }
-        public int RunListAndReturnExitCode(ListOptions opts)
+        
+        public int RunCommand(ListOptions opts)
         {
             if(opts.Inventory == null)
             {
