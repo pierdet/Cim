@@ -26,5 +26,6 @@ namespace Cim.Lib.UI
             Console.WriteLine(msg);
             Console.ResetColor();
         }
+        //Todo - Implement WriteList
     }
 }
