@@ -1,11 +1,5 @@
 ﻿using Autofac;
-using Cim.Lib.CommandHandler;
-using Cim.Lib.CommandOptions;
 using Cim.Lib.Data;
-using CommandLine;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 
 namespace Cim.Con
 {

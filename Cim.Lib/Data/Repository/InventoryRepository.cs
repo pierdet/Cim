@@ -1,10 +1,8 @@
 ﻿using Cim.Lib.Data.Entities;
-using Cim.Lib.UI;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Cim.Lib.Data.Repository
 {
