@@ -38,9 +38,18 @@ namespace Cim.Con.CommandHandler
             }
             else
             {
-                
-                // TODO - Implement
-                // inventory specified
+                var inventory = _inventoryRepository.GetInventoryByName(opts.Inventory);
+                if(inventory.Hosts.Count > 1)
+                {
+                    _gui.WriteLine($"Hosts in {inventory.Name}:");
+                    foreach (var host in inventory.Hosts)
+                    {
+                        _gui.WriteLine(host.HostName);
+                    }
+                    return 0;
+                }
+
+                _gui.WriteError($"{inventory.Name} doesn't contain any hosts");
                 return 1;
             }
         }
