@@ -1,4 +1,4 @@
-﻿using Cim.Lib.CommandOptions;
+﻿using Cim.Con.CommandOptions;
 using CommandLine;
 
 namespace Cim.Con

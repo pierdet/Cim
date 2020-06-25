@@ -1,6 +1,6 @@
 ﻿using CommandLine;
 
-namespace Cim.Lib.CommandOptions
+namespace Cim.Con.CommandOptions
 {
     [Verb("add", HelpText = "Add hosts to an inventory")]
     public class AddOptions

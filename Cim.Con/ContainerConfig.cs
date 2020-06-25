@@ -1,9 +1,9 @@
 ﻿using Autofac;
-using Cim.Lib.CommandHandler;
+using Cim.Con.CommandHandler;
 using Cim.Lib.Data;
 using Cim.Lib.Data.Repository;
-using Cim.Lib.UI;
-using Cim.Lib.CommandOptions;
+using Cim.Con.UI;
+using Cim.Con.CommandOptions;
 
 namespace Cim.Con
 {

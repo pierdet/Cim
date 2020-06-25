@@ -1,6 +1,6 @@
 ﻿using CommandLine;
 
-namespace Cim.Lib.CommandOptions
+namespace Cim.Con.CommandOptions
 {
     [Verb("create", HelpText = "Create a new inventory")]
     public class CreateOptions

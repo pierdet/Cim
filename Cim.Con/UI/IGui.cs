@@ -1,4 +1,4 @@
-﻿namespace Cim.Lib.UI
+﻿namespace Cim.Con.UI
 {
     public interface IGui
     {

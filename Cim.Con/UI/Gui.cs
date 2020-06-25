@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Cim.Lib.UI
+namespace Cim.Con.UI
 {
     public class Gui : IGui
     {

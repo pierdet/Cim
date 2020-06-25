@@ -1,9 +1,9 @@
-﻿using Cim.Lib.CommandOptions;
+﻿using Cim.Con.CommandOptions;
 using Cim.Lib.Data.Repository;
-using Cim.Lib.UI;
+using Cim.Con.UI;
 using System;
 
-namespace Cim.Lib.CommandHandler
+namespace Cim.Con.CommandHandler
 {
     public class ListCommandHandler : ICommandHandler<ListOptions>
     {

@@ -1,5 +1,5 @@
 ﻿using Autofac;
-using Cim.Lib.CommandHandler;
+using Cim.Con.CommandHandler;
 
 namespace Cim.Con
 {

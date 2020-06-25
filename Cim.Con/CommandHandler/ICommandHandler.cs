@@ -1,4 +1,4 @@
-﻿namespace Cim.Lib.CommandHandler
+﻿namespace Cim.Con.CommandHandler
 {
     public interface ICommandHandler<TCommand>    // TODO: maybe add a baseclass for the command to add generic constraint "where TCommand : BaseCommand"
     {

@@ -1,6 +1,6 @@
 ﻿using CommandLine;
 
-namespace Cim.Lib.CommandOptions
+namespace Cim.Con.CommandOptions
 {
     [Verb("list", HelpText = "List inventories")]
     public class ListOptions

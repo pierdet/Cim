@@ -1,7 +1,7 @@
-﻿using Cim.Lib.CommandOptions;
+﻿using Cim.Con.CommandOptions;
 using System;
 
-namespace Cim.Lib.CommandHandler
+namespace Cim.Con.CommandHandler
 {
     // TODO Implement AddHandler
     public class AddCommandHandler : ICommandHandler<AddOptions>
