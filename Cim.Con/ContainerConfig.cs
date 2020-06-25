@@ -4,6 +4,7 @@ using Cim.Lib.Data;
 using Cim.Lib.Data.Repository;
 using Cim.Con.UI;
 using Cim.Con.CommandOptions;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace Cim.Con
 {
@@ -16,6 +17,7 @@ namespace Cim.Con
             builder.RegisterType<AddCommandHandler>().As<ICommandHandler<AddOptions>>();
             builder.RegisterType<ListCommandHandler>().As<ICommandHandler<ListOptions>>();
             builder.RegisterType<CreateCommandHandler>().As<ICommandHandler<CreateOptions>>();
+            builder.RegisterType<TestCommandHandler>().As<ICommandHandler<TestOptions>>();
 
             builder.RegisterType<CommandHandlerFactory>().AsSelf();
             
