@@ -15,51 +15,39 @@ namespace Cim.Lib.Data.Repository
         }
         public void AddInventory(string name)
         {
-            using (_context)
-            {
-                if((_context.Inventories.FirstOrDefault(n => n.Name == name)) != null){
-                    throw new Exception("Inventory already exists");
-                }
-                else
-                {
-                    var entity = new Inventory
-                    {
-                        Name = name
-                    };
-                    using (_context)
-                    {
-                        _context.Inventories.Add(entity);
-                        _context.SaveChanges();
-                    }
-                }
+            
+            if(_context.Inventories.Any(n => n.Name == name)){
+                throw new Exception("Inventory already exists");
             }
+            else
+            {
+                var entity = new Inventory
+                {
+                    Name = name
+                };
+                _context.Inventories.Add(entity);
+                _context.SaveChanges();
+            }
+            
         }
 
         public IEnumerable<Inventory> GetInventories()
         {
-            using (_context)
-            {
-                return _context.Inventories.ToList();
-            }
+            return _context.Inventories.ToList();   
         }
 
         public Inventory GetInventoryByName(string name)
         {
-            using (_context)
-            {
-                return _context.Inventories
-                    .Include(i => i.Hosts)
-                    .FirstOrDefault(i => i.Name == name);
-            }
+            return _context.Inventories
+                .Include(i => i.Hosts)
+                .FirstOrDefault(i => i.Name == name);
+
         }
 
         public void UpdateInventory(Inventory inventory)
         {
-            using (_context)
-            {
-                _context.Inventories.Update(inventory);
-                _context.SaveChanges();
-            }
+            _context.Inventories.Update(inventory);
+            _context.SaveChanges();
         }
     }
 }

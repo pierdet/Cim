@@ -12,9 +12,10 @@ namespace Cim.Con
         {
             _factory = factory;
         }
+        
         public void run(string[] args)
         {
-            CommandLine.Parser.Default.ParseArguments<AddOptions, ListOptions, CreateOptions>(args)
+            Parser.Default.ParseArguments<AddOptions, ListOptions, CreateOptions>(args)
             .MapResult(
               (dynamic opts) => _factory.Create(opts).RunCommand(opts),
                 errs => decimal.MinusOne);
