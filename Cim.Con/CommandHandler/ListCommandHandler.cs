@@ -38,19 +38,27 @@ namespace Cim.Con.CommandHandler
             }
             else
             {
-                var inventory = _inventoryRepository.GetInventoryByName(opts.Inventory);
-                if(inventory.Hosts.Count > 1)
+                //Inventory specified, list all hosts
+                try
                 {
-                    _gui.WriteLine($"Hosts in {inventory.Name}:");
-                    foreach (var host in inventory.Hosts)
+                    var inventory = _inventoryRepository.GetInventoryByName(opts.Inventory);
+                    if (inventory.Hosts.Count > 0)
                     {
-                        _gui.WriteLine(host.HostName);
+                        _gui.WriteLine($"Hosts in {inventory.Name}:");
+                        foreach (var host in inventory.Hosts)
+                        {
+                            _gui.WriteLine(host.HostName);
+                        }
+                        return 0;
                     }
-                    return 0;
+                    _gui.WriteError($"{inventory.Name} doesn't contain any hosts");
+                    return 1;
                 }
-
-                _gui.WriteError($"{inventory.Name} doesn't contain any hosts");
-                return 1;
+                catch (Exception e)
+                {
+                    _gui.WriteError($"Failed to list the hosts in {opts.Inventory}, does the inventory exist?");
+                    return 1;
+                }
             }
         }
     }

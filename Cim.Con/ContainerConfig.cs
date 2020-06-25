@@ -21,7 +21,7 @@ namespace Cim.Con
             
             builder.RegisterType<CimApplication>().As<ICimApplication>();
 
-            // TODO How to create an interface for InventoryContext?
+            
             builder.RegisterType<InventoryContext>().AsSelf();
             builder.RegisterType<InventoryRepository>().As<IInventoryRepository>();
 

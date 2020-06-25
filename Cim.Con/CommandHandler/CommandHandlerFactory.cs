@@ -1,7 +1,7 @@
 ﻿using Autofac;
 using Cim.Con.CommandHandler;
 
-namespace Cim.Con
+namespace Cim.Con.CommandHandler
 {
     public class CommandHandlerFactory
     {
