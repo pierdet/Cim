@@ -1,3 +1,4 @@
+# CIM - Connection Inventory Manager
 ## Building / Running
 ```bash
 git clone https://github.com/pierdet/Cim.git
