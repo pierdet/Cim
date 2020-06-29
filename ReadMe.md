@@ -39,7 +39,7 @@ ERROR(S):
 ```
 ## Usage
 The `--help` command can be invoked both directly after `cim` or after specifying a verb
-#### Example 1 - Initial help
+### Example 1 - Initial help
 ```bash
 cim --help
 ```
@@ -63,7 +63,7 @@ Copyright (C) 2020 cim
 
   version    Display version information.
 ```
-#### Example 2 - Verb help
+### Example 2 - Verb help
 ```bash
 cim create --help
 ```
@@ -77,7 +77,7 @@ Copyright (C) 2020 cim
 
   --version               Display version information.
 ```
-#### Example 3 - Creating an inventory, adding hosts and testing them
+### Example 3 - Creating an inventory, adding hosts and testing them
 ### Creating the inventory
 #### Input:
 ```bash
