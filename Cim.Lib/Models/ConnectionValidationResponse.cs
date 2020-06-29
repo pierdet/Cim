@@ -6,5 +6,8 @@ namespace Cim.Lib.Models
 {
     public class ConnectionValidationResponse
     {
+        public string Connection { get; set; }
+        public bool Success { get; set; }
+        public string ErrorMessage { get; set; }
     }
 }

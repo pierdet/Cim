@@ -30,6 +30,18 @@ namespace Cim.Lib.Data.Repository
             }
             
         }
+        public void RemoveInventory(string name)
+        {
+            if (!(_context.Inventories.Any(n => n.Name == name)))
+            {
+                throw new Exception("Inventory doesn't exist!");
+            }
+            else
+            {
+                _context.Inventories.Remove(GetInventoryByName(name));
+                _context.SaveChanges();
+            }
+        }
 
         public IEnumerable<Inventory> GetInventories()
         {
