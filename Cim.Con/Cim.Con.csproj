@@ -5,9 +5,9 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <AssemblyName>cim</AssemblyName>
     <CopyOutputSymbolsToPublishDirectory>false</CopyOutputSymbolsToPublishDirectory>
-    <PublishSingleFile>true</PublishSingleFile>
-    <PublishTrimmed>true</PublishTrimmed>
-    <PublishReadyToRun>true</PublishReadyToRun>
+    <PublishSingleFile Condition="'$(Configuration)' == 'Release' ">true</PublishSingleFile>
+    <PublishTrimmed Condition="'$(Configuration)' == 'Release' ">true</PublishTrimmed>
+    <PublishReadyToRun Condition="'$(Configuration)' == 'Release' ">true</PublishReadyToRun>
   </PropertyGroup>
   
 

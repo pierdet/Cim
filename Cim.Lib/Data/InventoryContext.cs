@@ -1,6 +1,7 @@
 ﻿using Cim.Lib.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 
@@ -17,7 +18,7 @@ namespace Cim.Lib.Data
         public DbSet<Host> Hosts { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            var dbPath = Path.Combine(Assembly.GetExecutingAssembly().Location, "cim.db");
+            var dbPath = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "cim.db");
             options.UseSqlite("Data Source = " + dbPath);
             base.OnConfiguring(options);
         }
