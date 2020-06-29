@@ -1,7 +1,7 @@
 ﻿using Cim.Lib.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
-using System.IO
+using System.IO;
 
 namespace Cim.Lib.Data
 {
