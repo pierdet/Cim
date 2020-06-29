@@ -36,7 +36,7 @@ jobs:
           tag=$(git describe --tags --abbrev=0)
           release_name="Cim-$tag-${{ matrix.target }}"
           # Build everything
-          dotnet publish Cim.Con/Cim.Con.csproj --framework netcoreapp3.1 --runtime "${{ matrix.target }}" -c Release -o "$release_name"
+          dotnet publish Cim.Con/Cim.Con.csproj --framework netcoreapp3.1 --runtime "${{ matrix.target }}" -c Release -o "$release_name" /p:PublishSingleFile=true /p:PublishTrimmed=true /p:PublishReadyToRun=true /p:CopyOutputSymbolsToPublishDirectory=false
           # Pack files
           if [ "${{ matrix.target }}" == "win-x64" ]; then
             # Pack to zip for Windows
