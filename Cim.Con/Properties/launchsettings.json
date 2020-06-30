@@ -1,19 +1,33 @@
 ﻿{
   "$schema": "http://json.schemastore.org/launchsettings.json",
-  "profiles": {
-    "Add Item": {
-      "commandName": "Project",
-      "commandLineArgs": "create -i inv1",
-      "environmentVariables": {
-        
-      }
-    },
-    "List Items": {
-      "commandName": "Project",
-      "commandLineArgs": "list",
-      "environmentVariables": {
+    "profiles": {
+        "Create Item": {
+            "commandName": "Project",
+            "commandLineArgs": "create -i inv1",
+            "environmentVariables": {
 
-      }
+            }
+        },
+        "List Items": {
+            "commandName": "Project",
+            "commandLineArgs": "list",
+            "environmentVariables": {
+
+            }
+        },
+        "Add Items": {
+            "commandName": "Project",
+            "commandLineArgs": "add -i inv1 -h facebook.com facebook.se github.com 192.168.1.1",
+            "environmentVariables": {
+
+            }
+        },
+        "Test Inventory": {
+            "commandName": "Project",
+            "commandLineArgs": "test -i inv1",
+            "environmentVariables": {
+
+            }
+        }
     }
-  }
 }

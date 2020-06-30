@@ -83,12 +83,14 @@ namespace Cim.Lib.Net
         public async Task<IEnumerable<ConnectionValidationResponse>> ValidateParallelAsync(List<string> hostNames)
         {
             var tasks = new List<Task<ConnectionValidationResponse>>();
+            var instance = new ConnectionValidator();
             foreach (var hostName in hostNames)
             {
-                tasks.Add(ValidateAsync(hostName));
+                tasks.Add(Task.Run(() => instance.Validate(hostName)));
             }
+            // TODO fix, result is null
             var result = await Task.WhenAll(tasks);
-            return result;
+            return new List<ConnectionValidationResponse>(result);
         }
         public void Dispose()
         {

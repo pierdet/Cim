@@ -1,9 +1,12 @@
 ﻿using Cim.Con.CommandOptions;
 using Cim.Con.UI;
+using Cim.Lib.Data.Entities;
 using Cim.Lib.Data.Repository;
 using Cim.Lib.Net;
+using Microsoft.EntityFrameworkCore.Update;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -30,19 +33,25 @@ namespace Cim.Con.CommandHandler
                 var inventory = await _inventoryRepository.GetInventoryByNameAsync(opts.Inventory);
                 if (inventory.Hosts.Count > 0)
                 {
-                    _gui.WriteLine($"Testing connection to hosts in {inventory.Name}:");
+                    var hostNames = new List<string>();
                     foreach (var host in inventory.Hosts)
                     {
-                        var result = _connectionValidator.Validate(host.HostName);
+                        hostNames.Add(host.HostName);
+                    }
+                    _gui.WriteLine($"Testing connection to hosts in {inventory.Name}:");
+                    var results = await _connectionValidator.ValidateParallelAsync(hostNames);
+                    foreach (var result in results)
+                    {
                         if (result.Success)
                         {
-                            _gui.WriteSuccess($"{host.HostName} is reachable");
+                            _gui.WriteSuccess($"{ result.Connection } is reachable");
                         }
                         else
                         {
-                            _gui.WriteError($"{host.HostName} is not reachable: {result.ErrorMessage}");
+                            _gui.WriteError($"{ result.Connection } is not reachable - { result.ErrorMessage }");
                         }
                     }
+                    
                     return 0;
                 }
                 _gui.WriteError($"{inventory.Name} doesn't contain any hosts");
