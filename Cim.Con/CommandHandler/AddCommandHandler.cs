@@ -5,6 +5,7 @@ using Cim.Lib.Data.Repository;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
+using System.Threading.Tasks;
 
 namespace Cim.Con.CommandHandler
 {
@@ -18,16 +19,16 @@ namespace Cim.Con.CommandHandler
             _inventoryRepository = inventoryRepository;
             _gui = gui;
         }
-        public int RunCommand(AddOptions opts)
+        public async Task<int> RunCommand(AddOptions opts)
         {
             try
             {
-                var inventory =_inventoryRepository.GetInventoryByName(opts.Inventory);
+                var inventory = await _inventoryRepository.GetInventoryByNameAsync(opts.Inventory);
                 foreach(var hostName in opts.Hosts)
                 {
                     inventory.Hosts.Add(new Host { HostName = hostName });
                 }
-                _inventoryRepository.UpdateInventory(inventory);
+                await _inventoryRepository.UpdateInventoryAsync(inventory);
                 return 0;
             }
             catch (Exception e)

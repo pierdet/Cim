@@ -2,6 +2,7 @@
 using Cim.Lib.Data.Repository;
 using Cim.Con.UI;
 using System;
+using System.Threading.Tasks;
 
 namespace Cim.Con.CommandHandler
 {
@@ -15,14 +16,14 @@ namespace Cim.Con.CommandHandler
             _gui = gui;
         }
         
-        public int RunCommand(ListOptions opts)
+        public async Task<int> RunCommand(ListOptions opts)
         {
             if(opts.Inventory == null)
             {
                 //No inventory specified, list all inventories
                 try
                 {
-                    var inventories = _inventoryRepository.GetInventories();
+                    var inventories = await _inventoryRepository.GetInventoriesAsync();
                     foreach(var inventory in inventories)
                     {
                         _gui.WriteLine(inventory.Name);
@@ -41,7 +42,7 @@ namespace Cim.Con.CommandHandler
                 //Inventory specified, list all hosts
                 try
                 {
-                    var inventory = _inventoryRepository.GetInventoryByName(opts.Inventory);
+                    var inventory = await _inventoryRepository.GetInventoryByNameAsync(opts.Inventory);
                     if (inventory.Hosts.Count > 0)
                     {
                         _gui.WriteLine($"Hosts in {inventory.Name}:");

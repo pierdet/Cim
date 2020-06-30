@@ -5,6 +5,7 @@ using Cim.Lib.Net;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Cim.Con.CommandHandler
 {
@@ -22,11 +23,11 @@ namespace Cim.Con.CommandHandler
             _gui = gui;
             _connectionValidator = connectionValidator;
         }
-        public int RunCommand(TestOptions opts)
+        public async Task<int> RunCommand(TestOptions opts)
         {
             try
             {
-                var inventory = _inventoryRepository.GetInventoryByName(opts.Inventory);
+                var inventory = await _inventoryRepository.GetInventoryByNameAsync(opts.Inventory);
                 if (inventory.Hosts.Count > 0)
                 {
                     _gui.WriteLine($"Testing connection to hosts in {inventory.Name}:");

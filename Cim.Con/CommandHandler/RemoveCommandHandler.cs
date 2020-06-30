@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using Microsoft.EntityFrameworkCore.Metadata.Conventions;
+using System.Threading.Tasks;
 
 namespace Cim.Con.CommandHandler
 {
@@ -18,11 +19,11 @@ namespace Cim.Con.CommandHandler
             _inventoryRepository = inventoryRepository;
             _gui = gui;
         }
-        public int RunCommand(RemoveOptions opts)
+        public async Task<int> RunCommand(RemoveOptions opts)
         {
             try
             {
-                var inventory = _inventoryRepository.GetInventoryByName(opts.Inventory);
+                var inventory = await _inventoryRepository.GetInventoryByNameAsync(opts.Inventory);
                 foreach(var hostName in opts.Hosts)
                 {
                     //Todo Optimize
@@ -36,7 +37,7 @@ namespace Cim.Con.CommandHandler
                         _gui.WriteError($"Failed to remove { hostName } from { inventory.Name }");
                     }
                 }
-                _inventoryRepository.UpdateInventory(inventory);
+                await _inventoryRepository.UpdateInventoryAsync(inventory);
                 return 0;
             }
             catch (Exception e)

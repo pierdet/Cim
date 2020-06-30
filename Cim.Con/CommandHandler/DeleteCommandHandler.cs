@@ -4,6 +4,7 @@ using Cim.Lib.Data.Repository;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Cim.Con.CommandHandler
 {
@@ -16,11 +17,11 @@ namespace Cim.Con.CommandHandler
             _inventoryRepository = inventoryRepository;
             _gui = gui;
         }
-        public int RunCommand(DeleteOptions opts)
+        public async Task<int> RunCommand(DeleteOptions opts)
         {
             try
             {
-                _inventoryRepository.RemoveInventory(opts.Inventory);
+                await _inventoryRepository.RemoveInventoryAsync(opts.Inventory);
                 _gui.WriteSuccess($"Deleted inventory {opts.Inventory}");
                 return 0;
             }

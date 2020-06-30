@@ -8,5 +8,6 @@ namespace Cim.Lib.Net
     public interface IConnectionValidator
     {
         public ConnectionValidationResponse Validate(string hostName);
+        //Todo Implement ValidateParallel
     }
 }

@@ -2,6 +2,7 @@
 using Cim.Lib.Data.Repository;
 using Cim.Con.UI;
 using System;
+using System.Threading.Tasks;
 
 namespace Cim.Con.CommandHandler
 {
@@ -15,11 +16,11 @@ namespace Cim.Con.CommandHandler
             _gui = gui;
         }
         
-        public int RunCommand(CreateOptions opts)
+        public async Task<int> RunCommand(CreateOptions opts)
         {
             try
             {
-                _inventoryRepository.AddInventory(opts.Inventory);
+                await _inventoryRepository.AddInventoryAsync(opts.Inventory);
                 _gui.WriteSuccess($"Created inventory {opts.Inventory}");
                 return 0;
             }

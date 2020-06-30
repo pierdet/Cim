@@ -1,7 +1,9 @@
-﻿namespace Cim.Con.CommandHandler
+﻿using System.Threading.Tasks;
+
+namespace Cim.Con.CommandHandler
 {
     public interface ICommandHandler<TCommand>    // TODO: maybe add a baseclass for the command to add generic constraint "where TCommand : BaseCommand"
     {
-        int RunCommand(TCommand opts);
+        Task<int> RunCommand(TCommand opts);
     }
 }
