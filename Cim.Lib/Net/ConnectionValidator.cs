@@ -1,4 +1,5 @@
-﻿using Cim.Lib.Models;
+﻿using Cim.Lib.Data.Entities;
+using Cim.Lib.Models;
 using System;
 using System.Collections.Generic;
 using System.Net.NetworkInformation;
@@ -83,10 +84,9 @@ namespace Cim.Lib.Net
         public async Task<IEnumerable<ConnectionValidationResponse>> ValidateParallelAsync(List<string> hostNames)
         {
             var tasks = new List<Task<ConnectionValidationResponse>>();
-            var instance = new ConnectionValidator();
             foreach (var hostName in hostNames)
             {
-                tasks.Add(Task.Run(() => instance.Validate(hostName)));
+                tasks.Add(ValidateAsync(hostName));
             }
             // TODO fix, result is null
             var result = await Task.WhenAll(tasks);
