@@ -7,6 +7,7 @@ using Cim.Con.CommandOptions;
 using Microsoft.Extensions.Caching.Memory;
 using Cim.Lib.Net;
 using Microsoft.Extensions.Configuration;
+using System.Net.NetworkInformation;
 
 namespace Cim.Con
 {
@@ -31,6 +32,7 @@ namespace Cim.Con
             builder.RegisterType<InventoryContext>().AsSelf();
             builder.RegisterType<InventoryRepository>().As<IInventoryRepository>();
             builder.RegisterType<ConnectionValidator>().As<IConnectionValidator>();
+            builder.RegisterType<Ping>().InstancePerRequest().AsSelf();
 
             builder.RegisterType<Gui>().As<IGui>();
             

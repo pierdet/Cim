@@ -40,6 +40,7 @@ namespace Cim.Con.CommandHandler
                     }
                     _gui.WriteLine($"Testing connection to hosts in {inventory.Name}:");
                     var results = await _connectionValidator.ValidateParallelAsync(hostNames);
+                    
                     foreach (var result in results)
                     {
                         if (result.Success)
