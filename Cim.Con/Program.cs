@@ -1,11 +1,12 @@
 ﻿using Autofac;
 using Cim.Lib.Data;
+using System.Threading.Tasks;
 
 namespace Cim.Con
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             // Configure DI
             var container = ContainerConfig.Configure();
@@ -18,8 +19,9 @@ namespace Cim.Con
                 }
                 // request an instance of ICimApplication and run it
                 var app = scope.Resolve<ICimApplication>();
-                app.run(args);
+                await app.run(args);
             }
+            
         }
         
     }

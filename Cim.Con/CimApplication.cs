@@ -4,6 +4,7 @@ using CommandLine;
 using System;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 
 namespace Cim.Con
 {
@@ -17,14 +18,13 @@ namespace Cim.Con
             _factory = factory;
         }
         
-        public void run(string[] args)
+        public async Task run(string[] args)
         {
             var types = LoadTypes();
-
-            Parser.Default.ParseArguments(args, types)
+            await Parser.Default.ParseArguments(args, types)
             .MapResult(
-              (dynamic opts) => _factory.Create(opts).RunCommand(opts),
-                errs => decimal.MinusOne);
+                (dynamic opts) => _factory.Create(opts).RunCommand(opts),
+                err => Decimal.MinusOne);
         }
 
         // Dynamically get all Types that implements the VerbAttribe, i.e. AddOptions, ListOptions etc.

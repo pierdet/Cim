@@ -1,4 +1,5 @@
-﻿using Cim.Lib.Models;
+﻿using Cim.Lib.Data.Entities;
+using Cim.Lib.Models;
 using System;
 using System.Collections.Generic;
 using System.Net.NetworkInformation;
@@ -7,19 +8,14 @@ using System.Threading.Tasks;
 
 namespace Cim.Lib.Net
 {
-    public class ConnectionValidator : IConnectionValidator, IDisposable
+    public class ConnectionValidator : IConnectionValidator
     {
-        private readonly Ping _pinger;
-        public ConnectionValidator()
-        {
-            _pinger = new Ping();
-        }
-
         public ConnectionValidationResponse Validate(string connection)
         {
+            var pinger = new Ping();
             try
             {
-                var reply = _pinger.Send(connection, 1000);
+                var reply = pinger.Send(connection, 1000);
 
                 if (reply == null)
                 {
@@ -46,12 +42,17 @@ namespace Cim.Lib.Net
                     ErrorMessage = $"unexpected error occurred: {e.Message}"
                 };
             }
+            finally
+            {
+                pinger.Dispose();
+            }
         }
         private async Task<ConnectionValidationResponse> ValidateAsync(string hostName)
         {
+            var pinger = new Ping();
             try
             {
-                var reply = await _pinger.SendPingAsync(hostName, 1000);
+                var reply = await pinger.SendPingAsync(hostName, 1000);
 
                 if (reply == null)
                 {
@@ -78,6 +79,10 @@ namespace Cim.Lib.Net
                     ErrorMessage = $"unexpected error occurred: {e.Message}"
                 };
             }
+            finally
+            {
+                pinger.Dispose();
+            }
         }
 
         public async Task<IEnumerable<ConnectionValidationResponse>> ValidateParallelAsync(List<string> hostNames)
@@ -87,12 +92,9 @@ namespace Cim.Lib.Net
             {
                 tasks.Add(ValidateAsync(hostName));
             }
+            // TODO fix, result is null
             var result = await Task.WhenAll(tasks);
-            return result;
-        }
-        public void Dispose()
-        {
-            _pinger.Dispose();
+            return new List<ConnectionValidationResponse>(result);
         }
     }
 }

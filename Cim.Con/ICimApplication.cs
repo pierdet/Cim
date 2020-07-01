@@ -1,7 +1,9 @@
-﻿namespace Cim.Con
+﻿using System.Threading.Tasks;
+
+namespace Cim.Con
 {
     public interface ICimApplication
     {
-        void run(string[] args);
+        Task run(string[] args);
     }
 }
