@@ -92,7 +92,6 @@ namespace Cim.Lib.Net
             {
                 tasks.Add(ValidateAsync(hostName));
             }
-            // TODO fix, result is null
             var result = await Task.WhenAll(tasks);
             return new List<ConnectionValidationResponse>(result);
         }
